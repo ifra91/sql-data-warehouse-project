@@ -33,10 +33,10 @@ INSERT INTO silver.crm_cust_info(
 	cst_create_date
 	)
 SELECT 
-cst_id,
-cst_key,
-TRIM(cst_firstname) AS cst_firstname,
-TRIM(cst_lastname) AS cst_lastname,
+	cst_id,
+	cst_key,
+	TRIM(cst_firstname) AS cst_firstname,
+	TRIM(cst_lastname) AS cst_lastname,
 CASE 
 	WHEN UPPER(TRIM(cst_marital_status)) = 'S' THEN 'Single'
 	WHEN UPPER(TRIM(cst_marital_status)) = 'M' THEN 'Married'
@@ -47,11 +47,11 @@ CASE
 	WHEN UPPER(TRIM(cst_gndr)) = 'M' THEN 'Male'
 	ELSE 'n\a'
 END 
-cst_gndr,
-cst_create_date
+	cst_gndr,
+	cst_create_date
 FROM (
 SELECT *, 
-ROW_NUMBER() OVER(PARTITION BY cst_id ORDER BY cst_create_date DESC) as flag_last
+	ROW_NUMBER() OVER(PARTITION BY cst_id ORDER BY cst_create_date DESC) as flag_last
 FROM bronze.crm_cust_info
 )t WHERE flag_last = 1;
 SET @end_time = GETDATE();
@@ -63,14 +63,14 @@ PRINT '>> Truncating Table: silver.crm_prd_info';
 TRUNCATE TABLE silver.crm_prd_info;
 PRINT '>> Inserting Data Into: silver.crm_prd_info ';
 INSERT INTO silver.crm_prd_info (
-prd_id,
-cat_id,
-prd_key ,
-prd_nm ,
-prd_cost ,
-prd_line ,
-prd_start_dt,
-prd_end_dt 
+	prd_id,
+	cat_id,
+	prd_key ,
+	prd_nm ,
+	prd_cost ,
+	prd_line ,
+	prd_start_dt,
+	prd_end_dt 
   )
 SELECT prd_id
 	  ,REPLACE(SUBSTRING(prd_key, 1, 5), '-','_') AS cat_id
@@ -96,19 +96,19 @@ PRINT '>> Truncating Table: silver.crm_sales_details';
 TRUNCATE TABLE silver.crm_sales_details;
 PRINT '>> Inserting Data Into: silver.crm_sales_details';
 INSERT INTO silver.crm_sales_details(
-sls_ord_num ,
-sls_prd_key ,
-sls_cust_id ,
-sls_order_dt,
-sls_ship_dt ,
-sls_due_dt ,
-sls_sales ,
-sls_quantity ,
-sls_price )
+	sls_ord_num ,
+	sls_prd_key ,
+	sls_cust_id ,
+	sls_order_dt,
+	sls_ship_dt ,
+	sls_due_dt ,
+	sls_sales ,
+	sls_quantity ,
+	sls_price )
 SELECT
-sls_ord_num,
-sls_prd_key,
-sls_cust_id,
+	sls_ord_num,
+	sls_prd_key,
+	sls_cust_id,
 CASE WHEN sls_order_dt = 0 OR LEN(sls_order_dt) != 8 THEN NULL
 	ELSE CAST(CAST(sls_order_dt AS VARCHAR)AS DATE)
 	END AS sls_order_dt,
@@ -160,8 +160,8 @@ TRUNCATE TABLE silver.erp_loc_a101;
 PRINT '>> Inserting Data Into: silver.erp_loc_a101';
 INSERT INTO  silver.erp_loc_a101
 (
-cid ,
-cntry
+	cid ,
+	cntry
 )
 SELECT REPLACE(cid, '-', '') cid,
 CASE WHEN TRIM(cntry) = 'DE' THEN 'Geramny'
@@ -179,10 +179,10 @@ PRINT '>> Truncating Table: silver.erp_px_cat_g1v2';
 TRUNCATE TABLE silver.erp_px_cat_g1v2;
 PRINT '>> Inserting Data Into: silver.erp_px_cat_g1v2';
 INSERT INTO silver.erp_px_cat_g1v2 (
-id,
-cat,
-subcat,
-maintenance
+	id,
+	cat,
+	subcat,
+	maintenance
 )
 SELECT * FROM bronze.erp_px_cat_g1v2;
 SET @end_time = GETDATE();
