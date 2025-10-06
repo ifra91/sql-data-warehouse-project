@@ -1,0 +1,24 @@
+-----------------------------
+Data Catalogue for Gold Layer
+------------------------------
+
+The Gold layer is business level data; that can be used for Analysis purpose.
+The data is consumed for reporting and analysis.
+For this project star schema is used, in which fact table is centralized source of data and
+dimension table
+
+Table 1: gold.dim_customers
+
+Purpose: Stores customer details
+
+Column Name       Data Type    Description
+customer_key	      INT	       Surrogate key uniquely identified each customer record in data tables
+customer_id	        INT	       Unique numerical identifier assigned to each customer
+customer_number   NVARCHAR(50) Alphanumeric identifier representing customer data for tracing and locaing 
+first_name	      NVARCHAR(50) Customers first name from database
+last_name	        NVARCHAR(50) Customers last name 
+country		        NVARCHAR(50) country of residence
+marital_status    NVARCHAR(50) marital status M for married , S for single
+gender		        NVARCHAR(50) gender of customer M for male, F for female
+birthdate	          DATE	     date of birth of customer
+create_date        	DATE	     The date and time when the customer record was created
