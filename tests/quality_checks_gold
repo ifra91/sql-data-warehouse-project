@@ -1,1 +1,43 @@
+/* 
+----------------------------------------------------
+QUALITY CHECKS
+----------------------------------------------------
+This Layer checks the integrity, consistency and accuracy of the gold layer
+- COmbines tables using a surrogate key, a unique identifier assigned to each record in table
+- create view which can be queried using window function
+- centralized fact table and dimension tables
+
+====================================================
+checking gold.dim_customers 
+====================================================
+-- check for uniqueness in the dim_customers
+
+SELECT customer_key, COUNT(*) AS duplicate_count
+FROM gold.dim_customers 
+GROUP BY customer_key
+HAVING COUNT(*) > 1;
+
+====================================================
+checking gold.dim_products
+====================================================
+-- check for uniqueness in the dim_products
+
+SELECT product_key, COUNT(*) AS duplicate_count
+FROM gold.dim_products 
+GROUP BY product_key
+HAVING COUNT(*) > 1;
+
+====================================================
+checking gold.fact_sales
+====================================================
+-- check for model connectivity
+
+select * from 
+gold.fact_sales f
+LEFT JOIN gold.dim_customers c
+ON c.customer_key = f.customer_key
+LEFT JOIN gold.dim_products p
+ON p.product_key = f.product_key
+WHERE p.product_key IS NULL OR c.customer_key IS NULL
+
 
