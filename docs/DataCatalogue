@@ -11,14 +11,41 @@ Table 1: gold.dim_customers
 
 Purpose: Stores customer details
 
-Column Name       Data Type    Description
-customer_key	      INT	       Surrogate key uniquely identified each customer record in data tables
-customer_id	        INT	       Unique numerical identifier assigned to each customer
-customer_number   NVARCHAR(50) Alphanumeric identifier representing customer data for tracing and locaing 
-first_name	      NVARCHAR(50) Customers first name from database
-last_name	        NVARCHAR(50) Customers last name 
-country		        NVARCHAR(50) country of residence
-marital_status    NVARCHAR(50) marital status M for married , S for single
-gender		        NVARCHAR(50) gender of customer M for male, F for female
-birthdate	          DATE	     date of birth of customer
-create_date        	DATE	     The date and time when the customer record was created
+Column Name           Data Type          Description
+customer_key           INT               Surrogate key uniquely identified each customer record in data tables
+customer_id            INT	             Unique numerical identifier assigned to each customer
+customer_number        NVARCHAR(50)      Alphanumeric identifier representing customer data for tracing and locaing 
+first_name             NVARCHAR(50)      Customers first name from database
+last_name              NVARCHAR(50)      Customers last name 
+country                NVARCHAR(50)      country of residence
+marital_status         NVARCHAR(50)      marital status M for married , S for single
+gender                 NVARCHAR(50)      gender of customer M for male, F for female
+birthdate	             DATE	             date of birth of customer
+create_date            DATE	             The date and time when the customer record was created
+
+Table 2: gold.dim_products
+Purpose: Stores product details
+Column Name           Data Type          Description
+product_key             INT              Surrogate key uniquely identified each product record in data tables
+product_id              INT	             Unique numerical identifier assigned to each product for tracking and referencing
+product_number         NVARCHAR(50)      Alphanumeric identifier code representing product used for categorization and inventory 
+category_id            NVARCHAR(50)      Identifier for products category
+category               NVARCHAR(50)      descriptive name of the product
+subcategory            NVARCHAR(50)      country of residence
+maintenance_required   NVARCHAR(50)      Indicates where product requires management
+cost                   NVARCHAR(50)      Cost Price of product
+product_line           DATE	             specific product line or series to which product belongs
+start_date             DATE	             The date and time when the product became available for sale or use
+
+Table 3: gold.fact_sales
+Purpose Stores transactional details data for analytical purposes
+Column Name              Data Type           Description
+order_number             NVARCHAR(50)     Unique identifier for each sales order
+product_key               INT	            Surrogate key for linking the order to product table 
+customer_key              INT             Surrogate key for linking the order to customer table 
+order_date                DATE            Date of order placed
+shipping_date             DATE            Date of order shipping
+due_date                  DATE            Date when order payment is fulfilled
+sales_amount              INT             The total amount of order
+quantity                  INT             Price per unit of product
+price                     INT
