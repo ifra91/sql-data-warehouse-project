@@ -39,7 +39,7 @@ start_date             DATE	             The date and time when the product beca
 
 Table 3: gold.fact_sales
 Purpose Stores transactional details data for analytical purposes
-Column Name              Data Type           Description
+Column Name              Data Type        Description
 order_number             NVARCHAR(50)     Unique identifier for each sales order
 product_key               INT	            Surrogate key for linking the order to product table 
 customer_key              INT             Surrogate key for linking the order to customer table 
@@ -47,5 +47,5 @@ order_date                DATE            Date of order placed
 shipping_date             DATE            Date of order shipping
 due_date                  DATE            Date when order payment is fulfilled
 sales_amount              INT             The total amount of order
-quantity                  INT             Price per unit of product
-price                     INT
+quantity                  INT             Quantity of the product ordered
+price                     INT             Price per unit of product
