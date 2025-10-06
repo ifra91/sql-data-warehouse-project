@@ -2,7 +2,8 @@
 ----------------------------------------------------------------
 DDL SCRIPT : CREATE BRONZE TABLE
 ----------------------------------------------------------------
-
+- This script create Tables of Bronze Schema.
+- It drops old tables if exits and create new in schema
 */
 
 IF OBJECT_ID('bronze.crm_cust_info', 'U') IS NOT NULL
