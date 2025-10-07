@@ -1,7 +1,7 @@
 # sql-data-warehouse-project
-=====================================
+============================================
 Data Warehouse Of E-commerce
-=====================================
+============================================
 Project Overview: 
 - The Project demonstrates the Creation of a data warehouse.
 - collection data from CRM and ERP table of an online shopping and creating a centralized database
