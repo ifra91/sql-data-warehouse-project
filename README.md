@@ -1,6 +1,5 @@
 # sql-data-warehouse-project
 
-Data Warehouse 
 
 Project Overview: 
 - The Project demonstrates the Creation of a data warehouse.
@@ -21,17 +20,18 @@ Step 1 : Create Project Plan
 - Creating Views
 
 Step 2 : Create Task in Notion with all description
+
 Step 3 : Create DDL Schema in MS SQL using Medillion Architecture
 - create schema bronze
 - create schema silver 
 - create schema Gold
 
-BRONZE LAYER
+BRONZE LAYER(RAW)
 - Create Tables provided from CRM and ERP tables
 - Insert data from csv files
 - Create Stored Procedure bronze.bronze_load
 
-SIVER LAYER
+SIVER LAYER(Cleaned)
 - to load data from Bronze layer we need to perform quality checks
 - data cleaning 
 - data standardization
@@ -40,7 +40,7 @@ SIVER LAYER
 - Insert Into tables after quality checks
 - Create Stored Procedure silver.silver_load
 
-GOLD LAYER
+GOLD LAYER(Business-ready)
 - Draw a datamart diagram for sales, product and customers
 - Provide data to be consumed for reporting and analysis
 - Creating views and joins
